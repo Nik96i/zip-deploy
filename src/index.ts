@@ -1,63 +1,29 @@
-import { getInput } from '@actions/core';
+import { getInput, setFailed } from '@actions/core';
 import { context } from '@actions/github';
-import type {AxiosError} from "axios";
 import fs from 'fs';
-import {axiosClient} from "./lib";
-
-const apiPath = '/post';
-
-interface DeployParams {
-    apiHost: string;
-    apiToken: string;
-    file: fs.ReadStream;
-}
-interface DeployResponse {
-    success: boolean;
-    message: string;
-}
-
-async function deploy({ apiHost, apiToken, file }: DeployParams): Promise<DeployResponse> {
-
-    try {
-
-        const formData = new FormData();
-
-        formData.append("token", apiToken);
-        formData.append("file", file);
-        formData.append("deploy", "true");
-
-        const response = await axiosClient.post(`${apiHost}${apiPath}`, formData);
-        
-        console.log(response);
-        
-        return {
-            success: true,
-            message: "OK"
-        }
-
-    } catch (error) {
-        const err = error as AxiosError;
-
-        return {
-            success: false,
-            message: err.message,
-        }
-    }
-
-    // return {
-    //     success: false,
-    //     message: "Nothing ...",
-    // }
-
-}
+import {deploy} from "./api";
 
 async function main(): Promise<void> {
 
-    const inputApiUrl: string = getInput('api');
+    const inputApiUrl = getInput('api');
     const inputApiToken = getInput('token');
     const inputFile = getInput('file');
 
-    // const zipFile = fs.readFileSync(inputFile, 'utf-8');
+    try {
+
+        fs.access(inputFile, fs.constants.R_OK, (err) => {
+
+            if (err !== null) {
+                throw new Error(`Cannot read file: ${inputFile}`);
+            }
+
+        });
+
+    } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        setFailed((error as Error).message ?? 'Unknown error');
+        return;
+    }
 
     const result = await deploy({
         apiHost: inputApiUrl,
