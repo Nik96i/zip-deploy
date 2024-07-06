@@ -34,4 +34,4 @@ jobs:
         with:
           api: 'https://postman-echo.com'
           token: 'ABCDEFG123456'
-          file: sample/a9pp.zip
+          file: sample/app.zip
