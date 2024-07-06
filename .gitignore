@@ -1,2 +1,6 @@
 
-.idea/
+# Ignore jetbrains files
+.idea
+
+# Dependency directory
+node_modules
