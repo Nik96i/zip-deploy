@@ -32,6 +32,6 @@ jobs:
       - name: Run my action
         uses: ./
         with:
-          api: 'https://example.com'
+          api: 'https://postman-echo.com'
           token: 'ABCDEFG123456'
-          file: sample/sample.json
+          file: sample/app.zip
