@@ -1,42 +1,37 @@
-import { getInput, setFailed } from '@actions/core';
-import { context } from '@actions/github';
-import fs from 'fs';
-import {deploy} from "./api";
+import { getInput, setFailed } from "@actions/core";
+// import { context, getOctokit } from '@actions/github';
+import fs from "fs";
+import { deploy } from "./api";
+import { canReadFile } from "./utils";
 
 async function main(): Promise<void> {
+  const inputApiUrl = getInput("api");
+  const inputApiToken = getInput("token");
+  const inputFile = getInput("file");
 
-    const inputApiUrl = getInput('api');
-    const inputApiToken = getInput('token');
-    const inputFile = getInput('file');
+  try {
+    const fileAccess = await canReadFile(inputFile);
 
-    try {
-
-        fs.access(inputFile, fs.constants.R_OK, (err) => {
-
-            if (err !== null) {
-                throw new Error(`Cannot read file: ${inputFile}`);
-            }
-
-        });
-
-    } catch (error) {
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        setFailed((error as Error).message ?? 'Unknown error');
-        return;
+    if (!fileAccess) {
+      throw new Error(`Cannot read file: ${inputFile}`);
     }
 
     const result = await deploy({
-        apiHost: inputApiUrl,
-        apiToken: inputApiToken,
-        file: fs.createReadStream(inputFile),
+      apiHost: inputApiUrl,
+      apiToken: inputApiToken,
+      file: fs.createReadStream(inputFile)
     });
 
-    console.log(result)
+    if (!result.success) {
+      throw new Error(`Failed to deploy file: ${inputFile}`);
+    }
 
-    // const pullRequest = context;
+    console.log("Successfully deployed!");
+  } catch (error) {
+    const err = error as Error;
 
-    console.log(JSON.stringify(context))
-
+    setFailed(err.message);
+  }
 }
 
-void main()
+void main();
