@@ -1,4 +1,4 @@
-import { getInput, setFailed } from "@actions/core";
+import { getInput, setFailed, info, setOutput } from "@actions/core";
 // import { context, getOctokit } from '@actions/github';
 import fs from "fs";
 import { deploy } from "./api";
@@ -25,6 +25,10 @@ async function main(): Promise<void> {
     if (!result.success) {
       throw new Error(`Failed to deploy file: ${inputFile}`);
     }
+
+    info('salam chetori')
+
+    setOutput('outputKey', 'inam khoroji')
 
     console.log("Successfully deployed!");
   } catch (error) {
