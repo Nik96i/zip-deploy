@@ -1,8 +1,8 @@
 import { getInput } from '@actions/core';
 import { context } from '@actions/github';
 import type {AxiosError} from "axios";
-import axios from "axios";
 import fs from 'fs';
+import {axiosClient} from "./lib";
 
 const apiPath = '/post';
 
@@ -15,17 +15,6 @@ interface DeployResponse {
     success: boolean;
     message: string;
 }
-
-const axiosClient = axios.create({
-    headers: {
-        "Content-Type": "multipart/form-data",
-        Accept: "application/json"
-    },
-    validateStatus: () => {
-        // Don't throw error for 3xx, 4xx, etc.
-        return true;
-    }
-});
 
 async function deploy({ apiHost, apiToken, file }: DeployParams): Promise<DeployResponse> {
 
