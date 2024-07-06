@@ -1,9 +1,8 @@
-import { getInput, setFailed } from '@actions/core';
-import { context, getOctokit } from '@actions/github';
+import { context } from '@actions/github';
 
 async function main(): Promise<void> {
 
-    const pullRequest = context;
+    // const pullRequest = context;
 
     console.log(JSON.stringify(context))
 
