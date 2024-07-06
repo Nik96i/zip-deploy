@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write src/",
+    "lint": "eslint . --report-unused-disable-directives-severity error --max-warnings 0",
     "build": "tsc"
   },
   "author": "",

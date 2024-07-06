@@ -33,3 +33,5 @@ jobs:
         uses: ./
         with:
           api: 'https://example.com'
+          token: 'ABCDEFG123456'
+          file: sample/sample.json

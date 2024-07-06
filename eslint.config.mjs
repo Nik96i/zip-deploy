@@ -20,6 +20,6 @@ export default tseslint.config(
   },
 
   {
-    ignores: ["lib", "eslint.config.mjs"]
+    ignores: ["dist", "eslint.config.mjs"]
   }
 );

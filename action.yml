@@ -9,6 +9,10 @@ inputs:
     description: "API URL"
     required: true
     default: ""
+  token:
+    description: "API token"
+    required: true
+    default: ""
   file:
     description: "Zip file"
     required: true
