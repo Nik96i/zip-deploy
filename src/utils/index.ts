@@ -8,4 +8,8 @@ async function canReadFile(filePath: string): Promise<boolean> {
   });
 }
 
-export { canReadFile };
+function isValidInput(input: string): boolean {
+  return input.length === 0;
+}
+
+export { canReadFile, isValidInput };
