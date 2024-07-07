@@ -1,22 +1,26 @@
-name: "Zip Deploy"
-description: "Deploy static websites to Paratco hosting."
+name: "Paratco hosting"
+description: "Deploy static websites to Paratco hosting"
 author: "Paratco"
 branding:
   icon: cloud
   color: blue
 inputs:
-  api:
-    description: "API URL"
+  host:
+    description: "Hosting hostname"
     required: true
     default: ""
   token:
-    description: "API token"
+    description: "Hosting API token"
     required: true
     default: ""
   file:
-    description: "Zip file"
+    description: "Zip file to be uploaded"
     required: true
     default: ""
+  deploy:
+    description: "Whether to deploy uploaded file or not"
+    required: false
+    default: "true"
 runs:
   using: "node20"
   main: "dist/index.js"

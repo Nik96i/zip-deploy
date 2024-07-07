@@ -6,6 +6,11 @@ import { axiosClient } from "@/lib";
 const apiPath = "/post";
 
 // Type Definitions
+interface ApiResponse {
+  code: number;
+  desc: string;
+  data: object;
+}
 interface DeployParams {
   apiHost: string;
   apiToken: string;
