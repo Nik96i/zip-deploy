@@ -33,5 +33,4 @@ jobs:
         uses: ./
         with:
           api: 'https://postman-echo.com'
-          token: 'ABCDEFG123456'
           file: sample/app.zip
