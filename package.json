@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write src/",
     "lint": "eslint . --report-unused-disable-directives-severity error --max-warnings 0",
-    "build": "tsc"
+    "build": "rollup -c",
+    "typecheck": "tsc --noEmit"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@actions/core": "^1.10.1",
     "@actions/github": "^6.0.0",
@@ -20,10 +22,15 @@
   "devDependencies": {
     "@paratco/eslint-config": "^0.5.0",
     "@paratco/prettier-config": "^0.1.1",
+    "@rollup/plugin-replace": "^5.0.7",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.14.10",
     "eslint": "^8.57.0",
     "globals": "^15.8.0",
     "prettier": "^3.3.2",
+    "rollup": "^4.18.0",
+    "tslib": "^2.6.3",
     "typescript": "^5.5.3",
     "typescript-eslint": "^7.15.0"
   }

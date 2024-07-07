@@ -1,6 +1,6 @@
 import type fs from "fs";
 import type { AxiosError } from "axios";
-import { axiosClient } from "../lib";
+import { axiosClient } from "@/lib";
 
 // Constants
 const apiPath = "/post";

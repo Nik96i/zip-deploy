@@ -1,8 +1,8 @@
 import { getInput, setFailed } from "@actions/core";
 // import { context, getOctokit } from '@actions/github';
 import fs from "fs";
-import { deploy } from "./api";
-import { canReadFile } from "./utils";
+import { deploy } from "@/api";
+import { canReadFile } from "@/utils";
 
 async function main(): Promise<void> {
   const inputApiUrl = getInput("api");
