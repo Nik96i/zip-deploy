@@ -7,9 +7,9 @@ async function main(): Promise<void> {
   const inputFile = getInput("file");
   const inputDeploy = getInput("deploy");
 
-  console.log(inputApiHost)
-  console.log(inputApiToken)
-  console.log(inputFile)
+  console.log(typeof inputApiHost)
+  console.log(typeof inputApiToken)
+  console.log(typeof inputFile)
   console.log(inputDeploy)
 
   //
