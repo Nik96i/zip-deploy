@@ -33,7 +33,7 @@ jobs:
         uses: ./
         with:
           host: "https://postman-echo.com"
-          token: "fdGYUuB0196WPR2cPIR8P2L0XMZPv2bq5xPlNYRDqRP1u9wwYPDF5T6Yh3&yGfR3"
+          token: "fdGYUuB0196WPR2cPIR8P2L0XMZPv2bq5xPlNYRDqRP1u9wwYPDF5T6Yh3ZyGfR3"
           tag: "1.2.3"
           deploy: "true"
           file: sample/app.zip
