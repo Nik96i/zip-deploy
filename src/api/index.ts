@@ -45,10 +45,16 @@ async function deploySite({ apiHost, apiToken, tag, deploy, file }: DeployParams
     const statusCode = response.status;
 
     if (statusCode === 200) {
+      // For Dev
       return {
-        success: response.data.code === 0,
-        message: errorCodes[response.data.code as keyof typeof errorCodes]
+        success: true,
+        message: "OK"
       };
+
+      // return {
+      //   success: response.data.code === 0,
+      //   message: errorCodes[response.data.code as keyof typeof errorCodes]
+      // };
     }
 
     return {
