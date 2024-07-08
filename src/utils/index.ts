@@ -35,7 +35,6 @@ function getHostName(): string | null {
 }
 
 function getToken(): string | null {
-  console.log(getInput("token"))
   return tokenRegex.test(getInput("token")) ? getInput("token") : null;
 }
 
